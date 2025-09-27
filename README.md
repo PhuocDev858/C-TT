@@ -1,61 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏍️ Website Quản Lý Xe Máy B2C
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Hệ thống quản lý bán xe máy trực tuyến được xây dựng bằng PHP Laravel và MySQL
 
-## About Laravel
+## 📖 Mô tả dự án
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Website bán xe máy B2C (Business to Customer) với đầy đủ tính năng quản lý sản phẩm, đơn hàng, khách hàng và hệ thống authentication hoàn chỉnh.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Tính năng chính
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 👥 **Dành cho khách hàng (Frontend)**
+- 🏠 Trang chủ với banner carousel và sản phẩm nổi bật
+- 🔍 Xem danh sách sản phẩm với bộ lọc và tìm kiếm
+- 📱 Giao diện responsive, thân thiện với mobile
+- 🔐 Đăng ký, đăng nhập, quản lý hồ sơ
+- 📋 Xem lịch sử đơn hàng
 
-## Learning Laravel
+### 🎛️ **Dành cho quản trị viên (Backend)**
+- 📊 Dashboard tổng quan
+- 🏷️ Quản lý danh mục sản phẩm
+- 🏭 Quản lý thương hiệu
+- 🏍️ Quản lý sản phẩm (CRUD)
+- 👤 Quản lý khách hàng
+- 📦 Quản lý đơn hàng
+- 👨‍💼 Quản lý người dùng
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Công nghệ sử dụng
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Backend**: Laravel 11.x
+- **Frontend**: Bootstrap 5, HTML5, CSS3, JavaScript
+- **Database**: MySQL
+- **Authentication**: Laravel Breeze
+- **Icons**: Font Awesome
+- **Carousel**: Owl Carousel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📁 Cấu trúc thư mục
 
-## Laravel Sponsors
+```
+C-TT/
+├── BE-QLXM/              # Backend API (Laravel)
+├── fe-admin-quanlyxe/    # Frontend Admin & Client (Laravel Fullstack)
+└── README.md
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ Cài đặt và chạy dự án
 
-### Premium Partners
+### 1. Clone repository
+```bash
+git clone https://github.com/PhuocDev858/C-TT.git
+cd C-TT/fe-admin-quanlyxe
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Cài đặt dependencies
+```bash
+composer install
+npm install
+```
 
-## Contributing
+### 3. Cấu hình database
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Chỉnh sửa file `.env`:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=qlxm
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Code of Conduct
+### 4. Chạy migration và seeder
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 5. Khởi động server
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+Truy cập: `http://127.0.0.1:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📱 Screenshots & Demo
 
-## License
+- **Trang chủ**: Banner carousel + sản phẩm nổi bật
+- **Trang sản phẩm**: Lọc theo danh mục, thương hiệu, tìm kiếm
+- **Admin Dashboard**: Quản lý toàn diện hệ thống
+- **Authentication**: Đăng nhập/đăng ký với UI đẹp
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 👨‍💻 Tác giả
+
+**PhuocDev858**
+- GitHub: [@PhuocDev858](https://github.com/PhuocDev858)
+
+## 📄 License
+
+Dự án được phát hành dưới giấy phép [MIT License](https://opensource.org/licenses/MIT).
+
+---
+
+Được xây dựng với ❤️ bằng Laravel Framework

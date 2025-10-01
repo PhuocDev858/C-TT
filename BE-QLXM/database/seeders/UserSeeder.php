@@ -8,26 +8,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         User::insert([
             [
                 'name' => 'Admin QLXM',
                 'email' => 'admin@qlxm.vn',
                 'password' => Hash::make('admin123'),
-                'role' => 'admin'
+                'role' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'name' => 'Nguyễn Văn Nhân viên',
-                'email' => 'staff1@qlxm.vn',
-                'password' => Hash::make('staff123'),
-                'role' => 'staff'
-            ],
-            [
-                'name' => 'Lê Thị Nhân viên',
-                'email' => 'staff2@qlxm.vn',
-                'password' => Hash::make('staff456'),
-                'role' => 'staff'
+                'name' => 'Nhân viên bán hàng',
+                'email' => 'sales@qlxm.vn',
+                'password' => Hash::make('sales123'),
+                'role' => 'staff',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

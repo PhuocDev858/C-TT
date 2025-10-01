@@ -7,58 +7,56 @@ use App\Models\Product;
 
 class ProductSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         Product::insert([
             [
-                'name' => 'Xe máy Honda Wave Alpha',
+                'name' => 'Honda Wave Alpha',
                 'description' => 'Xe tiết kiệm xăng, phù hợp học sinh sinh viên',
                 'image' => 'wavealpha.jpg',
                 'price' => 18000000,
                 'stock' => 15,
                 'status' => 'available',
                 'brand_id' => 1,
-                'category_id' => 1
+                'category_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'name' => 'Xe máy Yamaha Sirius',
-                'description' => 'Kiểu dáng thể thao, động cơ mạnh mẽ',
-                'image' => 'sirius.jpg',
-                'price' => 21000000,
+                'name' => 'Yamaha Janus',
+                'description' => 'Xe ga nhỏ gọn, dễ điều khiển, tiết kiệm nhiên liệu',
+                'image' => 'janus.jpg',
+                'price' => 28500000,
+                'stock' => 20,
+                'status' => 'available',
+                'brand_id' => 2,
+                'category_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Suzuki Raider R150',
+                'description' => 'Xe côn tay thể thao mạnh mẽ, thiết kế nổi bật',
+                'image' => 'raider.jpg',
+                'price' => 55000000,
                 'stock' => 10,
                 'status' => 'available',
-                'brand_id' => 2,
-                'category_id' => 1
-            ],
-            [
-                'name' => 'Xe máy Honda Vision',
-                'description' => 'Xe tay ga nhỏ gọn, tiết kiệm nhiên liệu',
-                'image' => 'vision.jpg',
-                'price' => 32000000,
-                'stock' => 8,
-                'status' => 'available',
-                'brand_id' => 1,
-                'category_id' => 2
-            ],
-            [
-                'name' => 'Xe máy Yamaha Janus',
-                'description' => 'Xe tay ga phong cách dành cho nữ',
-                'image' => 'janus.jpg',
-                'price' => 28000000,
-                'stock' => 5,
-                'status' => 'available',
-                'brand_id' => 2,
-                'category_id' => 2
-            ],
-            [
-                'name' => 'Xe máy Suzuki Raider',
-                'description' => 'Xe côn tay thể thao mạnh mẽ',
-                'image' => 'raider.jpg',
-                'price' => 48000000,
-                'stock' => 3,
-                'status' => 'available',
                 'brand_id' => 3,
-                'category_id' => 3
+                'category_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'SYM Attila',
+                'description' => 'Xe ga thiết kế đẹp, vận hành êm ái',
+                'image' => 'attila.jpg',
+                'price' => 22000000,
+                'stock' => 12,
+                'status' => 'available',
+                'brand_id' => 4,
+                'category_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

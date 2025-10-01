@@ -19,7 +19,6 @@ use App\Http\Controllers\Api\{
 
 Route::get('test', fn() => 'API test works!');
 Route::get('ping', fn() => response()->json(['pong' => true]));
-Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login',    [AuthController::class, 'login']);
 
 /*

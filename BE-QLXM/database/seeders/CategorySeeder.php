@@ -7,12 +7,12 @@ use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
         Category::insert([
-            ['name' => 'Xe số', 'description' => 'Các dòng xe số phổ thông'],
-            ['name' => 'Xe ga', 'description' => 'Các dòng xe tay ga'],
-            ['name' => 'Xe côn tay', 'description' => 'Các dòng xe côn tay thể thao'],
+            ['name' => 'Xe số', 'description' => 'Các dòng xe số phổ thông', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Xe ga', 'description' => 'Các dòng xe tay ga tiện lợi', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Xe côn tay', 'description' => 'Các dòng xe côn tay thể thao', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

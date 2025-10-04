@@ -10,7 +10,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        return Brand::latest()->paginate(15);
+        return Brand::latest()->paginate(5);
     }
 
     public function store(BrandRequest $request)

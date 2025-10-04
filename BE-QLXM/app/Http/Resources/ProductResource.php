@@ -6,9 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     */
     public function toArray($request)
     {
         return [
@@ -19,6 +16,9 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'status' => $this->status,
             'image' => $this->image,
+            'stock' => $this->stock,
+            'description' => $this->description,
+            // asset() sẽ trả URL public → không cần token
             'image_url' => $this->image ? asset('storage/' . $this->image) : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -8,7 +8,8 @@ use App\Http\Controllers\Api\{
     BrandController,
     ProductController,
     CustomerController,
-    OrderController
+    OrderController,
+    ClientController
 };
 
 /*
@@ -17,9 +18,24 @@ use App\Http\Controllers\Api\{
 |--------------------------------------------------------------------------
 */
 
+
 Route::get('test', fn() => 'API test works!');
 Route::get('ping', fn() => response()->json(['pong' => true]));
 Route::post('auth/login',    [AuthController::class, 'login']);
+
+// Public API cho client
+Route::get('client/products/related', [ClientController::class, 'getRelatedProducts']);
+Route::get('client/product/relate', [ClientController::class, 'getRelatedProducts']);
+Route::get('client/categories', [ClientController::class, 'getCategories']);
+Route::get('client/categories/{id}', [ClientController::class, 'getCategory']);
+
+Route::get('client/brands', [ClientController::class, 'getBrands']);
+Route::get('client/brands/{id}', [ClientController::class, 'getBrand']);
+
+Route::get('client/products', [ClientController::class, 'getProducts']);
+Route::get('client/products/{id}', [ClientController::class, 'getProduct']);
+
+Route::post('client/orders', [ClientController::class, 'createOrder']);
 
 /*
 |--------------------------------------------------------------------------
@@ -44,22 +60,6 @@ Route::middleware('auth:sanctum')->group(function () {
             ->parameters(['users' => 'id']);
         Route::patch('users/{id}/password', [UserController::class, 'changePassword'])
             ->whereNumber('id');
-
-        // Categories
-        Route::apiResource('categories', CategoryController::class)
-            ->parameters(['categories' => 'id']);
-
-        // Brands
-        Route::apiResource('brands', BrandController::class)
-            ->parameters(['brands' => 'id']);
-
-        // Products
-        Route::apiResource('products', ProductController::class)
-            ->parameters(['products' => 'id']);
-
-        // Customers
-        Route::apiResource('customers', CustomerController::class)
-            ->parameters(['customers' => 'id']);
     });
 
     /*
@@ -72,6 +72,20 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('orders',     [OrderController::class, 'store']);
         Route::get('orders/{id}', [OrderController::class, 'show'])->whereNumber('id');
         Route::patch('orders/{id}/status', [OrderController::class, 'updateStatus'])->whereNumber('id');
+        // Categories
+        Route::apiResource('categories', CategoryController::class)
+            ->parameters(['categories' => 'id']);
+
+        // Brands
+        Route::apiResource('brands', BrandController::class)
+            ->parameters(['brands' => 'id']);
+
+        // Products
+        Route::apiResource('products', ProductController::class)
+            ->parameters(['products' => 'id']);
+        // Customers
+        Route::apiResource('customers', CustomerController::class)
+            ->parameters(['customers' => 'id']);
     });
 
     // Delete order (admin only)

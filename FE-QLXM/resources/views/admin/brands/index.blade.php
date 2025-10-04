@@ -1,0 +1,101 @@
+@extends('layouts.admin')
+
+@section('title', 'Quản lý Thương hiệu')
+
+@section('content')
+    <div class="container py-4">
+        <h1 class="fw-bold text-center mb-4" style="color:#fff;">Danh sách Thương hiệu</h1>
+        <a href="{{ route('admin.brands.create') }}" class="btn btn-primary mb-3">+ Thêm Thương hiệu</a>
+        @include('admin.components.alert')
+        {{-- Xóa debug print_r, chỉ hiển thị bảng dữ liệu --}}
+        <div class="card shadow-sm border-0" style="background:#23262f; color:#eaeaea; border-radius:1rem;">
+            <div class="card-body p-0">
+                <table class="table mb-0" style="background:#23262f; color:#eaeaea; border-radius:1rem; overflow:hidden;">
+                    <thead style="background:#181a20; color:#fff;">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Quốc gia</th>
+                            <th>Ngày tạo</th>
+                            <th>Ngày sửa</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($brands as $index => $brand)
+                            <tr style="border-bottom:1px solid #23262f;">
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $brand['name'] }}</td>
+                                <td>{{ $brand['country'] ?? 'N/A' }}</td>
+                                <td>{{ $brand['created_at'] ?? 'N/A' }}</td>
+                                <td>{{ $brand['updated_at'] ?? 'N/A' }}</td>
+                                <td>
+                                    <a href="{{ route('admin.brands.edit', $brand['id']) }}" class="btn btn-warning btn-sm"
+                                        style="border-radius:0.5rem;">Sửa</a>
+                                    <form action="{{ route('admin.brands.destroy', $brand['id']) }}" method="POST"
+                                        class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm" style="border-radius:0.5rem;">Xóa</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        @if (empty($brands))
+                            <tr>
+                                <td colspan="6">Không có thương hiệu nào.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {{-- Panagition --}}
+        @if (!empty($paginationLinks))
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    @foreach ($paginationLinks as $link)
+                        @if ($link['url'])
+                            <li class="page-item {{ $link['active'] ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $link['url'] }}">{!! $link['label'] !!}</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link">{!! $link['label'] !!}</span>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </nav>
+        @endif
+    </div>
+@endsection
+
+@push('scripts')
+    <style>
+        .table th,
+        .table td {
+            vertical-align: middle !important;
+        }
+
+        .table tbody tr:hover {
+            background: #181a20 !important;
+        }
+
+        .btn-warning {
+            background: #f59e42 !important;
+            color: #fff !important;
+        }
+
+        .btn-danger {
+            background: #ef4444 !important;
+            color: #fff !important;
+        }
+
+        .btn-primary {
+            background: #2563eb !important;
+            color: #fff !important;
+        }
+    </style>
+@endpush

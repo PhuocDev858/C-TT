@@ -14,6 +14,8 @@ class BrandSeeder extends Seeder
             ['name' => 'Yamaha', 'country' => 'Nhật Bản', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Suzuki', 'country' => 'Nhật Bản', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'SYM', 'country' => 'Đài Loan', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Ducati', 'country' => 'Ý', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'GPX', 'country' => 'Thái Lan', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

@@ -1,0 +1,4 @@
+[extensions]
+; Enable SQL Server extensions if available
+extension=pdo_sqlsrv
+extension=sqlsrv

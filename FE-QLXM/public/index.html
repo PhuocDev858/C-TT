@@ -490,17 +490,8 @@
             }
         }
 
-        // Auto test API on page load
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('🚀 QLXM Website loaded successfully!');
-            console.log('Frontend:', window.location.origin);
-            console.log('Backend API:', window.config?.API_BASE_URL || 'https://qlxm-778654bd1837.herokuapp.com');
-
-            // Auto test API connection
-            setTimeout(testApiConnection, 1000);
-
-            document.getElementById('apiStatus').innerHTML = '<i class="bi bi-cloud-check"></i> Website ready!';
-        });
+        // Instant redirect to Laravel home view
+        window.location.replace('https://qlxm-778654bd1837.herokuapp.com/');
     </script>
 </body>
 

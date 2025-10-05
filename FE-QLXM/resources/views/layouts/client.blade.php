@@ -103,7 +103,7 @@
 
     <!-- API Configuration -->
     <script src="{{ asset('js/config.js') }}"></script>
-    
+
     <!-- API Test Script (remove in production) -->
     <script src="{{ asset('js/api-test.js') }}"></script>
 

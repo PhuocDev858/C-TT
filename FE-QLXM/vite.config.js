@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    // No build needed - using existing assets in public/
-    build: {
-        manifest: false,
-        rollupOptions: {
-            input: {}
-        }
-    }
+    plugins: [
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true,
+        }),
+    ],
 });

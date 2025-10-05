@@ -1,2 +1,6 @@
-/* Temporary file for Vercel build compatibility */
-@import url('../../../public/css/app.css');
+/* Main CSS for Vite build - no TailwindCSS to avoid conflicts */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Note: public/css/app.css will be loaded separately via link tag for existing styles */

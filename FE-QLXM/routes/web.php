@@ -7,10 +7,6 @@ Route::get('/test', function () {
     return 'Laravel Frontend is working!';
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;

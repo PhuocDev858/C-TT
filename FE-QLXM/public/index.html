@@ -77,7 +77,7 @@
                     <i class="bi bi-speedometer2 display-4 text-primary mb-3"></i>
                     <h4>Dashboard Admin</h4>
                     <p>Quản lý thông tin xe máy, khách hàng và đơn hàng một cách hiệu quả</p>
-                    <a href="/admin" class="btn btn-primary" onclick="navigateToAdmin()">
+                    <a href="#" class="btn btn-primary" onclick="navigateToAdmin()">
                         <i class="bi bi-gear"></i> Vào Admin Panel
                     </a>
                 </div>
@@ -88,7 +88,7 @@
                     <i class="bi bi-person-circle display-4 text-success mb-3"></i>
                     <h4>Đăng nhập</h4>
                     <p>Truy cập hệ thống với tài khoản admin hoặc nhân viên</p>
-                    <a href="/login" class="btn btn-success" onclick="navigateToLogin()">
+                    <a href="#" class="btn btn-success" onclick="navigateToLogin()">
                         <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
                     </a>
                 </div>
@@ -99,9 +99,45 @@
                     <i class="bi bi-motorcycle display-4 text-warning mb-3"></i>
                     <h4>Catalog Xe</h4>
                     <p>Xem danh sách xe máy có sẵn với đầy đủ thông tin và hình ảnh</p>
-                    <a href="/motorcycles" class="btn btn-warning" onclick="navigateToMotorcycles()">
+                    <a href="#" class="btn btn-warning" onclick="navigateToMotorcycles()">
                         <i class="bi bi-list"></i> Xem Xe Máy
                     </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Features Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <i class="bi bi-tags display-4 text-info mb-3"></i>
+                    <h4>Thương Hiệu</h4>
+                    <p>Khám phá các thương hiệu xe máy nổi tiếng</p>
+                    <a href="#" class="btn btn-info" onclick="navigateToBrands()">
+                        <i class="bi bi-award"></i> Xem Brands
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <i class="bi bi-house display-4 text-secondary mb-3"></i>
+                    <h4>Trang Chủ Laravel</h4>
+                    <p>Truy cập trang chủ chính của hệ thống Laravel</p>
+                    <a href="#" class="btn btn-secondary" onclick="navigateToHome()">
+                        <i class="bi bi-house-door"></i> Trang Chủ
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <i class="bi bi-api display-4 text-dark mb-3"></i>
+                    <h4>API Documentation</h4>
+                    <p>Xem tài liệu API và test endpoints</p>
+                    <button class="btn btn-dark" onclick="showApiDocumentation()">
+                        <i class="bi bi-book"></i> Xem API Docs
+                    </button>
                 </div>
             </div>
         </div>
@@ -142,21 +178,93 @@
     <script src="/js/api-test.js"></script>
 
     <script>
-        // Navigation functions (since we can't use Laravel routing)
+        // Navigation functions - link to actual Laravel routes
         function navigateToAdmin() {
-            // For now, show message about Laravel backend
-            showMessage('Admin panel cần Laravel backend running. Hiện tại chỉ có API endpoint.', 'info');
+            // Redirect to Laravel admin login
+            window.open('https://qlxm-778654bd1837.herokuapp.com/admin/login', '_blank');
         }
 
         function navigateToLogin() {
-            showMessage('Login form cần Laravel backend running. Hiện tại chỉ có API endpoint.', 'info');
+            // Redirect to Laravel login
+            window.open('https://qlxm-778654bd1837.herokuapp.com/login', '_blank');
         }
 
         function navigateToMotorcycles() {
-            showMessage('Motorcycle catalog cần Laravel backend running. Hiện tại chỉ có API endpoint.', 'info');
+            // Redirect to Laravel motorcycles page
+            window.open('https://qlxm-778654bd1837.herokuapp.com/motorcycles', '_blank');
         }
 
-        function showMessage(message, type = 'info') {
+        function navigateToBrands() {
+            // Redirect to Laravel brands page
+            window.open('https://qlxm-778654bd1837.herokuapp.com/brands', '_blank');
+        }
+
+        function navigateToHome() {
+            // Redirect to Laravel home page
+            window.open('https://qlxm-778654bd1837.herokuapp.com/', '_blank');
+        }
+
+        function showApiDocumentation() {
+            const apiDocHtml = `
+                <div class="modal fade" id="apiModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">API Documentation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>🔓 Public Endpoints (No Auth Required)</h6>
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item"><code>GET /api/test</code> - API test</li>
+                                    <li class="list-group-item"><code>GET /api/ping</code> - Health check</li>
+                                    <li class="list-group-item"><code>POST /api/auth/login</code> - User login</li>
+                                    <li class="list-group-item"><code>GET /api/client/categories</code> - Get categories</li>
+                                    <li class="list-group-item"><code>GET /api/client/brands</code> - Get brands</li>
+                                    <li class="list-group-item"><code>GET /api/client/products</code> - Get products</li>
+                                </ul>
+                                
+                                <h6>🔒 Protected Endpoints (Auth Required)</h6>
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item"><code>GET /api/auth/me</code> - Current user info</li>
+                                    <li class="list-group-item"><code>POST /api/auth/logout</code> - Logout</li>
+                                    <li class="list-group-item"><code>GET /api/users</code> - Manage users (Admin only)</li>
+                                    <li class="list-group-item"><code>GET /api/orders</code> - Manage orders</li>
+                                    <li class="list-group-item"><code>GET /api/categories</code> - Manage categories</li>
+                                    <li class="list-group-item"><code>GET /api/products</code> - Manage products</li>
+                                </ul>
+                                
+                                <h6>🌐 Web Routes (Laravel Views)</h6>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><code>GET /</code> - Homepage</li>
+                                    <li class="list-group-item"><code>GET /motorcycles</code> - Motorcycle catalog</li>
+                                    <li class="list-group-item"><code>GET /brands</code> - Brand listing</li>
+                                    <li class="list-group-item"><code>GET /admin/login</code> - Admin login</li>
+                                    <li class="list-group-item"><code>GET /admin/dashboard</code> - Admin dashboard</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="https://qlxm-778654bd1837.herokuapp.com/api/test" target="_blank" class="btn btn-primary">Test API</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('apiModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', apiDocHtml);
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('apiModal'));
+            modal.show();
+        } function showMessage(message, type = 'info') {
             const alertClass = `alert-${type}`;
             const alertHtml = `
                 <div class="alert ${alertClass} alert-dismissible fade show mt-3" role="alert">

@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "echo 'No build needed - assets already in public/'",
+        "build": "echo 'Assets already exist in public directory'",
         "dev": "vite"
     },
     "devDependencies": {

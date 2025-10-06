@@ -4,10 +4,14 @@
 
 @section('content')
     <div class="container py-4">
-        <h1 class="fw-bold text-center mb-4" style="color:#fff;">Danh sách Thương hiệu</h1>
-        <a href="{{ route('admin.brands.create') }}" class="btn btn-primary mb-3">+ Thêm Thương hiệu</a>
-        @include('admin.components.alert')
-        {{-- Xóa debug print_r, chỉ hiển thị bảng dữ liệu --}}
+        <h1 class="fw-bold text-center mb-4" style="color:#fff;">Danh sách thương hiệu</h1>
+        <a href="{{ route('admin.brands.create') }}" class="btn btn-primary mb-3">+ Thêm thương hiệu</a>
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if (isset($error))
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endif
         <div class="card shadow-sm border-0" style="background:#23262f; color:#eaeaea; border-radius:1rem;">
             <div class="card-body p-0">
                 <table class="table mb-0" style="background:#23262f; color:#eaeaea; border-radius:1rem; overflow:hidden;">
@@ -16,19 +20,29 @@
                             <th>ID</th>
                             <th>Tên</th>
                             <th>Quốc gia</th>
+                            <th>Logo</th>
                             <th>Ngày tạo</th>
                             <th>Ngày sửa</th>
-                            <th>Hành động</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($brands as $index => $brand)
+                        @forelse ($brands as $index => $brand)
                             <tr style="border-bottom:1px solid #23262f;">
-                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $brand['id'] }}</td>
                                 <td>{{ $brand['name'] }}</td>
-                                <td>{{ $brand['country'] ?? 'N/A' }}</td>
-                                <td>{{ $brand['created_at'] ?? 'N/A' }}</td>
-                                <td>{{ $brand['updated_at'] ?? 'N/A' }}</td>
+                                <td>{{ $brand['country'] ?? '-' }}</td>
+                                <td>
+                                    @if (!empty($brand['logo']))
+                                        <img src="{{ config('app.be_api_url') }}/storage/{{ $brand['logo'] }}"
+                                            alt="{{ $brand['name'] }}"
+                                            style="width:40px; height:40px; object-fit:cover; border-radius:4px;">
+                                    @else
+                                        <span class="text-muted">Không có ảnh</span>
+                                    @endif
+                                </td>
+                                <td>{{ $brand['created_at'] ?? '-' }}</td>
+                                <td>{{ $brand['updated_at'] ?? '-' }}</td>
                                 <td>
                                     <a href="{{ route('admin.brands.edit', $brand['id']) }}" class="btn btn-warning btn-sm"
                                         style="border-radius:0.5rem;">Sửa</a>
@@ -40,35 +54,17 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
-                        @if (empty($brands))
+                        @empty
                             <tr>
-                                <td colspan="6">Không có thương hiệu nào.</td>
+                                <td colspan="7" class="text-center">Không có thương hiệu nào.</td>
                             </tr>
-                        @endif
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
-
-        {{-- Panagition --}}
-        @if (!empty($paginationLinks))
-            <nav class="mt-4">
-                <ul class="pagination justify-content-center">
-                    @foreach ($paginationLinks as $link)
-                        @if ($link['url'])
-                            <li class="page-item {{ $link['active'] ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $link['url'] }}">{!! $link['label'] !!}</a>
-                            </li>
-                        @else
-                            <li class="page-item disabled">
-                                <span class="page-link">{!! $link['label'] !!}</span>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-            </nav>
-        @endif
+        {{-- Admin Pagination Component --}}
+        @include('components.admin-pagination')
     </div>
 @endsection
 

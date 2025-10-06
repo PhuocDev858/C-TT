@@ -16,7 +16,8 @@ class BrandRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'description' => 'nullable|string',
-            'country' => 'nullable|string|max:100'
+            'country' => 'nullable|string|max:100',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

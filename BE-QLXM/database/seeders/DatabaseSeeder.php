@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
         $this->call([
             UserSeeder::class,
@@ -27,7 +27,10 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             CustomerSeeder::class,
             OrderSeeder::class,
-            OrderItemSeeder::class,
         ]);
     }
 }
+
+// Để seed lại dữ liệu sạch, hãy chạy lệnh sau trong terminal:
+// php artisan migrate:fresh --seed
+// Lệnh này sẽ xóa toàn bộ bảng, tạo lại và seed dữ liệu mới, không bị lỗi trùng email.

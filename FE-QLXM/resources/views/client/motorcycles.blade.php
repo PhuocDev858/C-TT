@@ -1,7 +1,8 @@
 @extends('layouts.client')
 
 @section('title', 'Danh Sách Xe Máy - QLXM')
-@section('description', 'Xem danh sách đầy đủ các dòng xe máy từ các hãng uy tín như Honda, Yamaha, Suzuki với giá cả hợp lý')
+@section('description', 'Xem danh sách đầy đủ các dòng xe máy từ các hãng uy tín như Honda, Yamaha, Suzuki với giá cả
+    hợp lý')
 
 @section('content')
     <!-- Page Heading -->
@@ -54,16 +55,18 @@
                         <div class="row grid">
                             @if (count($products) > 0)
                                 @foreach ($products as $product)
-                                    <div class="col-lg-4 col-md-4 all 
-                                        @if(isset($product['brand']['id'])) brand-{{ $product['brand']['id'] }} @endif
-                                        @if(isset($product['category']['id'])) category-{{ $product['category']['id'] }} @endif">
+                                    <div
+                                        class="col-lg-4 col-md-4 all 
+                                        @if (isset($product['brand']['id'])) brand-{{ $product['brand']['id'] }} @endif
+                                        @if (isset($product['category']['id'])) category-{{ $product['category']['id'] }} @endif">
                                         <div class="product-item">
                                             <a href="{{ route('client.motorcycles.show', $product['id']) }}">
                                                 @if ($product['image_url'])
                                                     <img src="{{ $product['image_url'] }}" alt="{{ $product['name'] }}"
                                                         style="width: 100%; height: 250px; object-fit: cover;">
                                                 @else
-                                                    <img src="{{ asset('img/product_01.jpg') }}" alt="{{ $product['name'] }}"
+                                                    <img src="{{ asset('img/product_01.jpg') }}"
+                                                        alt="{{ $product['name'] }}"
                                                         style="width: 100%; height: 250px; object-fit: cover;">
                                                 @endif
                                             </a>
@@ -89,7 +92,8 @@
                                                     <li><i class="fa fa-star"></i></li>
                                                 </ul>
 
-                                                <span class="status {{ $product['status'] == 'available' ? 'text-success' : 'text-danger' }}">
+                                                <span
+                                                    class="status {{ $product['status'] == 'available' ? 'text-success' : 'text-danger' }}">
                                                     {{ $product['status'] == 'available' ? 'Còn hàng' : 'Hết hàng' }}
                                                 </span>
                                             </div>

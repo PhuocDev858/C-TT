@@ -12,6 +12,6 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('client.about');
+        return view('client.info.about');
     }
 }

@@ -63,8 +63,16 @@ class BrandController extends Controller
         }
         $apiUrl = config('app.be_api_url', 'http://127.0.0.1:8000');
         $token = session('admin_token');
-        $data = $request->all();
-        $response = Http::withToken($token)->post($apiUrl . '/api/brands', $data);
+        $data = $request->except('logo');
+        $http = Http::withToken($token);
+        if ($request->hasFile('logo')) {
+            $http = $http->attach(
+                'logo',
+                fopen($request->file('logo')->getRealPath(), 'r'),
+                $request->file('logo')->getClientOriginalName()
+            );
+        }
+        $response = $http->post($apiUrl . '/api/brands', $data);
         if ($response->successful()) {
             return redirect()->route('admin.brands.index')->with('success', 'Thêm thương hiệu thành công');
         }
@@ -79,7 +87,8 @@ class BrandController extends Controller
         $apiUrl = config('app.be_api_url', 'http://127.0.0.1:8000');
         $token = session('admin_token');
         $response = Http::withToken($token)->get($apiUrl . "/api/brands/{$id}");
-        $brand = $response->json() ?? [];
+        $json = $response->json();
+        $brand = isset($json['data']) ? $json['data'] : [];
         return view('admin.brands.edit', compact('brand'));
     }
 
@@ -90,8 +99,16 @@ class BrandController extends Controller
         }
         $apiUrl = config('app.be_api_url', 'http://127.0.0.1:8000');
         $token = session('admin_token');
-        $data = $request->all();
-        $response = Http::withToken($token)->put($apiUrl . "/api/brands/{$id}", $data);
+        $data = $request->except('logo');
+        $http = Http::withToken($token);
+        if ($request->hasFile('logo')) {
+            $http = $http->attach(
+                'logo',
+                fopen($request->file('logo')->getRealPath(), 'r'),
+                $request->file('logo')->getClientOriginalName()
+            );
+        }
+        $response = $http->put($apiUrl . "/api/brands/{$id}", $data);
         if ($response->successful()) {
             return redirect()->route('admin.brands.index')->with('success', 'Cập nhật thương hiệu thành công');
         }

@@ -153,167 +153,46 @@
                 </div>
             </div>
 
+            @if (!empty($error))
+                <div class="alert alert-danger text-center my-4">
+                    <strong>Lỗi:</strong> {{ $error }}
+                </div>
+            @endif
+
             <div class="brand-grid">
                 <div class="row">
-                    <!-- Honda -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/honda.jpg') }}" alt="Honda">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 1) }}" class="filled-button">Xem Xe
-                                            Honda</a>
+                    @forelse ($brands as $brand)
+                        <div class="col-md-4">
+                            <div class="team-member">
+                                <div class="thumb-container">
+                                    @if (!empty($brand['logo']))
+                                        <img src="{{ config('app.be_api_url') }}/storage/{{ $brand['logo'] }}"
+                                            alt="{{ $brand['name'] }}">
+                                    @else
+                                        <img src="{{ asset('img/brands/default.png') }}" alt="{{ $brand['name'] }}">
+                                    @endif
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <a href="{{ route('client.brands.show', $brand['id']) }}"
+                                                class="filled-button">Xem chi tiết</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>Honda</h4>
-                                <span>Nhật Bản</span>
-                                <p>Thương hiệu xe máy uy tín với chất lượng cao, tiết kiệm nhiên liệu và độ bền vượt trội.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Yamaha -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/yamaha.png') }}" alt="Yamaha">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 2) }}" class="filled-button">Xem Xe
-                                            Yamaha</a>
-                                    </div>
+                                <div class="down-content">
+                                    <h4>{{ $brand['name'] }}</h4>
+                                    <span>{{ $brand['country'] ?? 'Chưa rõ' }}</span>
+                                    <p>{{ $brand['description'] ?? 'Không có mô tả.' }}</p>
                                 </div>
                             </div>
-                            <div class="down-content">
-                                <h4>Yamaha</h4>
-                                <span>Nhật Bản</span>
-                                <p>Chuyên về xe thể thao với thiết kế năng động, hiệu suất cao và công nghệ tiên tiến.</p>
+                        </div>
+                    @empty
+                        <div class="col-md-12">
+                            <div class="text-center py-5">
+                                <h4>Không có thương hiệu nào</h4>
+                                <p>Hiện tại chưa có dữ liệu về hãng xe máy.</p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Suzuki -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/suzuki.jpg') }}" alt="Suzuki">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 3) }}" class="filled-button">Xem Xe
-                                            Suzuki</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>Suzuki</h4>
-                                <span>Nhật Bản</span>
-                                <p>Tập trung vào động cơ mạnh mẽ với thiết kế thể thao ấn tượng và hiệu suất vượt trội.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ducati -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/ducati.jpg') }}" alt="Ducati">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 4) }}" class="filled-button">Xem Xe
-                                            Ducati</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>Ducati</h4>
-                                <span>Ý</span>
-                                <p>Thương hiệu xe mô tô cao cấp với thiết kế Italian sang trọng và công nghệ đỉnh cao.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Kawasaki -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/kawasaki.jpg') }}" alt="Kawasaki">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 5) }}" class="filled-button">Xem Xe
-                                            Kawasaki</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>Kawasaki</h4>
-                                <span>Nhật Bản</span>
-                                <p>Nổi tiếng với dòng xe thể thao Ninja, mạnh mẽ và tốc độ cao với thiết kế đặc trưng.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SYM -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/sym.jpg') }}" alt="SYM">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 6) }}" class="filled-button">Xem Xe SYM</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>SYM</h4>
-                                <span>Đài Loan</span>
-                                <p>Xe máy chất lượng cao với giá cả hợp lý, phù hợp cho nhu cầu di chuyển hàng ngày.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- GPX -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/gpx.jpg') }}" alt="GPX">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 7) }}" class="filled-button">Xem Xe GPX</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>GPX</h4>
-                                <span>Thái Lan</span>
-                                <p>Thương hiệu xe máy mới nổi với thiết kế trẻ trung và công nghệ hiện đại.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- VinFast -->
-                    <div class="col-md-4">
-                        <div class="team-member">
-                            <div class="thumb-container">
-                                <img src="{{ asset('img/brands/vinfast.jpg') }}" alt="VinFast">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <a href="{{ route('client.brands.show', 8) }}" class="filled-button">Xem Xe
-                                            VinFast</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="down-content">
-                                <h4>VinFast</h4>
-                                <span>Việt Nam</span>
-                                <p>Thương hiệu xe điện tiên phong tại Việt Nam với công nghệ thông minh và thân thiện môi
-                                    trường.</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

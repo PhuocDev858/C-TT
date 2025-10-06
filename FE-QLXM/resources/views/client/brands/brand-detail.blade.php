@@ -1,7 +1,11 @@
 @extends('layouts.client')
 
-@section('title', 'Xe Máy {{ $brand['name'] ?? 'Hãng' }} - QLXM')
-@section('description', 'Xem danh sách xe máy từ hãng {{ $brand['name'] ?? '' }} với chất lượng cao và giá cả hợp lý')
+@section('title', 'Xe Máy ' . ($brand['name'] ?? 'Hãng') . ' - QLXM')
+@section('description',
+    'Xem danh sách xe máy từ hãng ' .
+    ($brand['name'] ?? '') .
+    ' với chất lượng cao và giá cả hợp
+    lý')
 
 @section('content')
     <!-- Page Heading -->
@@ -10,11 +14,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        @if($brand)
+                        @if (is_array($brand) && !empty($brand['name']))
                             <h4>{{ $brand['name'] }}</h4>
                             <h2>Xe máy chất lượng</h2>
-                            @if(isset($brand['country']))
+                            @if (!empty($brand['country']))
                                 <p>Xuất xứ: {{ $brand['country'] }}</p>
+                            @endif
+                            @if (!empty($brand['description']))
+                                <p><strong>Mô tả:</strong> {{ $brand['description'] }}</p>
+                            @else
+                                <p><strong>Mô tả:</strong> Chưa có mô tả cho hãng này.</p>
                             @endif
                         @else
                             <h4>Hãng xe máy</h4>
@@ -42,7 +51,7 @@
                 <div class="col-md-12">
                     <div class="section-heading">
                         <h2>{{ $brand['name'] ?? 'Hãng xe máy' }} - Sản phẩm</h2>
-                        <a href="{{ route('client.motorcycles') }}">xem tất cả xe máy <i class="fa fa-angle-right"></i></a>
+                        <a href="{{ route('client.motorcycles') }}">Xem tất cả xe máy <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
 
@@ -81,7 +90,8 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
 
-                                    <span class="status {{ $product['status'] == 'available' ? 'text-success' : 'text-danger' }}">
+                                    <span
+                                        class="status {{ $product['status'] == 'available' ? 'text-success' : 'text-danger' }}">
                                         {{ $product['status'] == 'available' ? 'Còn hàng' : 'Hết hàng' }}
                                     </span>
                                 </div>

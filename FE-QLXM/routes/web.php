@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use \App\Http\Controllers\Admin\CustomerController;
 use \App\Http\Controllers\Admin\OrderController;
-use \App\Http\Controllers\Admin\OrderItemController;
 use \App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\AuthController;
@@ -18,15 +17,15 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\MotorcycleController;
 use App\Http\Controllers\Client\AboutController;
 use App\Http\Controllers\Client\ContactController;
-
+use \App\Http\Controllers\Client\BrandClientController;
 // Client Routes
 Route::name('client.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/motorcycles', [MotorcycleController::class, 'index'])->name('motorcycles');
     Route::get('/motorcycles/{id}', [MotorcycleController::class, 'show'])->name('motorcycles.show');
     // Thay thế brands bằng controller mới
-    Route::get('/brands', [\App\Http\Controllers\Client\BrandController::class, 'index'])->name('brands');
-    Route::get('/brands/{id}', [\App\Http\Controllers\Client\BrandController::class, 'show'])->name('brands.show');
+    Route::get('/brands', [BrandClientController::class, 'index'])->name('brands');
+    Route::get('/brands/{id}', [BrandClientController::class, 'show'])->name('brands.show');
     Route::get('/about', [AboutController::class, 'index'])->name('about');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
     Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
@@ -62,6 +61,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('orders', OrderController::class);
-    Route::resource('orderitems', OrderItemController::class);
     Route::resource('users', UserController::class);
 });

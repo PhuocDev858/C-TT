@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="@yield('description', 'Đăng nhập hệ thống quản lý xe máy')">
     <meta name="author" content="QLXM">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <title>@yield('title', 'Đăng nhập - QLXM')</title>
 
@@ -234,13 +233,8 @@
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive */
@@ -294,12 +288,6 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- API Configuration -->
-    <script src="{{ asset('js/config.js') }}"></script>
-
-    <!-- Auth API Functions -->
-    <script src="{{ asset('js/auth-api.js') }}"></script>
-
     <script>
         // Form Enhancement
         document.addEventListener('DOMContentLoaded', function() {
@@ -311,7 +299,7 @@
                     if (submitBtn) {
                         submitBtn.classList.add('btn-loading');
                         submitBtn.disabled = true;
-
+                        
                         // Reset after 10 seconds (fallback)
                         setTimeout(() => {
                             submitBtn.classList.remove('btn-loading');
@@ -327,7 +315,7 @@
                 input.addEventListener('focus', function() {
                     this.parentElement.classList.add('focused');
                 });
-
+                
                 input.addEventListener('blur', function() {
                     this.parentElement.classList.remove('focused');
                 });

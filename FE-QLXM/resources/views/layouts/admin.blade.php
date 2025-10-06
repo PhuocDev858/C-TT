@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
     <title>@yield('title', 'QLXM - Quản Lý Xe Máy')</title>
@@ -54,15 +53,15 @@
             background: var(--bg-sidebar);
             color: var(--text-light);
             transition: all 0.3s;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
 
         .sidebar-brand {
             padding: 1.5rem 1rem;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0,0,0,0.1);
             display: block;
             text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .sidebar-brand span {
@@ -135,7 +134,7 @@
 
         .navbar {
             background: #fff !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border-color);
         }
@@ -212,24 +211,24 @@
 
         .btn-sm:hover {
             transform: translateY(-1px) !important;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15) !important;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
         }
 
         /* Card Styling */
         .card {
             background: var(--card-bg) !important;
             border: 1px solid var(--border-color);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border-radius: 8px;
             transition: all 0.3s ease;
         }
 
         .card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             transform: translateY(-2px);
         }
 
-        .card-header {
+        .card-header {  
             background: #f8f9fa !important;
             border-bottom: 1px solid var(--border-color);
             font-weight: 600;
@@ -260,7 +259,7 @@
         .table tbody tr:hover {
             background: rgba(233, 236, 239, 0.6) !important;
             transform: translateY(-1px);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
             border-left: 3px solid rgba(237, 27, 36, 0.4);
         }
 
@@ -319,12 +318,7 @@
         }
 
         /* Typography */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             color: var(--text-main) !important;
             font-weight: 600;
         }
@@ -339,7 +333,7 @@
                 min-width: 200px;
                 max-width: 200px;
             }
-
+            
             .content {
                 padding: 1rem;
             }
@@ -439,22 +433,12 @@
             </footer>
         </div>
     </div>
-
+    
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- API Configuration -->
-    <script src="{{ asset('js/config.js') }}"></script>
-
-    <!-- Admin API Helpers -->
-    <script src="{{ asset('js/admin-api.js') }}"></script>
-
-    <!-- API Test Script (remove in production) -->
-    <script src="{{ asset('js/api-test.js') }}"></script>
-
     <script src="{{ asset('js/app.js') }}"></script>
-
+    
     <script>
         // Add some interactivity
         document.addEventListener('DOMContentLoaded', function() {
@@ -462,14 +446,14 @@
             const sidebarLinks = document.querySelectorAll('.sidebar-link');
             sidebarLinks.forEach(link => {
                 link.style.transition = 'all 0.3s ease';
-
+                
                 link.addEventListener('mouseenter', function() {
                     if (!this.closest('.sidebar-item').classList.contains('active')) {
                         this.style.transform = 'translateX(5px)';
                         this.style.background = 'rgba(108, 117, 125, 0.3)';
                     }
                 });
-
+                
                 link.addEventListener('mouseleave', function() {
                     if (!this.closest('.sidebar-item').classList.contains('active')) {
                         this.style.transform = 'translateX(0)';
@@ -502,12 +486,10 @@
                     if (submitBtn && !submitBtn.classList.contains('no-loading')) {
                         submitBtn.disabled = true;
                         const originalText = submitBtn.innerHTML;
-                        submitBtn.innerHTML =
-                            '<i class="bi bi-hourglass-split me-1"></i> Đang xử lý...';
+                        submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i> Đang xử lý...';
                         submitBtn.classList.add('btn-secondary');
-                        submitBtn.classList.remove('btn-primary', 'btn-success', 'btn-warning',
-                            'btn-danger');
-
+                        submitBtn.classList.remove('btn-primary', 'btn-success', 'btn-warning', 'btn-danger');
+                        
                         setTimeout(() => {
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalText;
@@ -518,7 +500,7 @@
             });
         });
     </script>
-
+    
     @stack('scripts')
 </body>
 
